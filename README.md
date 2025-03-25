@@ -114,7 +114,8 @@ class Autoencoder(nn.Module):
     def forward(self, x):
         x = self.encoder(x)
         x = self.decoder(x)
-        return x```
+        return x
+```
 
 ##### 📌 Optimized Model Architecture
 ![Optimized Model Architecture](images/architecture_oGNN.png)

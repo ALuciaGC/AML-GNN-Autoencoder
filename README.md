@@ -44,6 +44,15 @@ The dataset consisted of financial transactions labeled for money laundering act
 
 These steps ensured the data was suitable for both GNN learning and anomaly detection through autoencoders.
 
+**Example: Label Encoding and One-Hot Encoding**
+```python
+from sklearn.preprocessing import LabelEncoder
+
+data['SENDER_ACCOUNT_ID'] = LabelEncoder().fit_transform(data['SENDER_ACCOUNT_ID'])
+data['RECEIVER_ACCOUNT_ID'] = LabelEncoder().fit_transform(data['RECEIVER_ACCOUNT_ID'])
+data = pd.get_dummies(data, columns=['ALERT_TYPE'], drop_first=True)
+
+
 ## 🧱 Model Architecture
 
 Two models were developed and compared in this project:
@@ -53,6 +62,28 @@ Two models were developed and compared in this project:
 - Focused on learning node embeddings from graph topology and feature propagation.
 - Tuned using parameters like hidden dimensions, learning rate, activation function, and dropout rate.
 
+```md
+**Simplified GCN Architecture (PyTorch Geometric)**
+```python
+from torch_geometric.nn import GCNConv
+
+class GNNModel(torch.nn.Module):
+    def __init__(self, num_features, hidden_dim, num_classes):
+        super(GNNModel, self).__init__()
+        self.conv1 = GCNConv(num_features, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.fc = torch.nn.Linear(hidden_dim, num_classes)
+        self.relu = torch.nn.ReLU()
+        self.dropout = torch.nn.Dropout(p=0.5)
+
+    def forward(self, data):
+        x, edge_index = data.x, data.edge_index
+        x = self.relu(self.conv1(x, edge_index))
+        x = self.dropout(x)
+        x = self.relu(self.conv2(x, edge_index))
+        x = self.fc(x)
+        return x
+
 ##### 📌 Simplified Model Architecture
 ![Simplified Model Architecture](images/architecture_sGNN.png)
 
@@ -60,6 +91,28 @@ Two models were developed and compared in this project:
 - Integrated a feature-level Autoencoder with the GNN to enhance anomaly detection.
 - The Autoencoder learned compressed feature representations, feeding them into the GNN.
 - Helped uncover subtle abnormal patterns associated with illicit activity.
+
+```md
+**Autoencoder Module for Feature Compression**
+```python
+class Autoencoder(nn.Module):
+    def __init__(self, input_dim, encoding_dim):
+        super(Autoencoder, self).__init__()
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, 128),
+            nn.ReLU(),
+            nn.Linear(128, encoding_dim)
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(encoding_dim, 128),
+            nn.ReLU(),
+            nn.Linear(128, input_dim)
+        )
+
+    def forward(self, x):
+        x = self.encoder(x)
+        x = self.decoder(x)
+        return x
 
 ##### 📌 Optimized Model Architecture
 ![Optimized Model Architecture](images/architecture_oGNN.png)

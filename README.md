@@ -53,7 +53,7 @@ Two models were developed and compared in this project:
 - Focused on learning node embeddings from graph topology and feature propagation.
 - Tuned using parameters like hidden dimensions, learning rate, activation function, and dropout rate.
 
-### 📌 Simplified Model Architecture
+##### 📌 Simplified Model Architecture
 ![Simplified Model Architecture](images/architecture_sGNN.png)
 
 ### 2. **GNN + Autoencoder (Optimized Model)**
@@ -61,7 +61,7 @@ Two models were developed and compared in this project:
 - The Autoencoder learned compressed feature representations, feeding them into the GNN.
 - Helped uncover subtle abnormal patterns associated with illicit activity.
 
-### 📌 Optimized Model Architecture
+##### 📌 Optimized Model Architecture
 ![Optimized Model Architecture](images/architecture_oGNN.png)
 
 Both models were trained using PyTorch Geometric and evaluated on the same data splits to ensure comparability.
@@ -90,10 +90,10 @@ The models were evaluated on a held-out test set using the following metrics:
 - Strengths: Identified nuanced anomalies by combining topology and compressed features  
 - Limitations: Higher training complexity and computation time
 
-### 📌 Confusion Matrix
+##### 📌 Confusion Matrix
 ![Confusion Matrix](images/confusion_matrix.png)
 
-### 📌 ROC Curve
+##### 📌 ROC Curve
 ![ROC Curve](images/roc_auc.png)
 
 Overall, the hybrid model offered improved performance and deeper insights into suspicious network behavior.

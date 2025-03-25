@@ -115,3 +115,18 @@ Overall, the hybrid model offered improved performance and deeper insights into 
 5. **Scalability and Interpretability Remain Key Challenges**  
    Combining graph learning with deep architectures increases computational demands, highlighting the need for more efficient model design in future iterations.
 
+## 📒 Notebooks
+
+The following Jupyter notebooks document the full modeling process:
+
+- [`Initial Data Analysis.ipynb`](notebooks/Initial%20Data%20Analysis.ipynb)  
+  Exploratory data analysis and class imbalance review
+
+- [`Feature Engineering.ipynb`](notebooks/Feature%20Engineering.ipynb)  
+  Graph construction and transformation of input features
+
+- [`Simplified GNN.ipynb`](notebooks/Simplified%20GNN.ipynb)  
+  Baseline Graph Neural Network implementation
+
+- [`Hybrid Approach.ipynb`](notebooks/Hybrid%20Approach.ipynb)  
+  Final model combining GNN with Autoencoder for enhanced detection

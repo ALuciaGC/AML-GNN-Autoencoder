@@ -50,7 +50,7 @@ from sklearn.preprocessing import LabelEncoder
 
 data['SENDER_ACCOUNT_ID'] = LabelEncoder().fit_transform(data['SENDER_ACCOUNT_ID'])
 data['RECEIVER_ACCOUNT_ID'] = LabelEncoder().fit_transform(data['RECEIVER_ACCOUNT_ID'])
-data = pd.get_dummies(data, columns=['ALERT_TYPE'], drop_first=True)
+data = pd.get_dummies(data, columns=['ALERT_TYPE'], drop_first=True)```
 
 
 ## 🧱 Model Architecture
@@ -82,7 +82,7 @@ class GNNModel(torch.nn.Module):
         x = self.dropout(x)
         x = self.relu(self.conv2(x, edge_index))
         x = self.fc(x)
-        return x
+        return x```
 
 ##### 📌 Simplified Model Architecture
 ![Simplified Model Architecture](images/architecture_sGNN.png)
@@ -112,7 +112,7 @@ class Autoencoder(nn.Module):
     def forward(self, x):
         x = self.encoder(x)
         x = self.decoder(x)
-        return x
+        return x```
 
 ##### 📌 Optimized Model Architecture
 ![Optimized Model Architecture](images/architecture_oGNN.png)

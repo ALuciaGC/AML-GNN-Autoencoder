@@ -24,7 +24,7 @@ This project followed a structured machine learning pipeline:
 
 This workflow allowed for both structural and behavioral insights into complex financial interactions.
 
-! [Project Workflow](images/project_workflow.png)
+![Project Workflow](images/project_workflow.png)
 
 ## 📂 Data & Preprocessing
 
